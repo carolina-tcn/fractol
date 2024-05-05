@@ -59,6 +59,6 @@ fclean: clean
 re: fclean all
 
 #bonus: $(OBJ) $(BONUS_OBJ) Makefile libft.h
-	$(LIB) $(NAME) $(OBJ) $(BONUS_OBJ)
+	#$(LIB) $(NAME) $(OBJ) $(BONUS_OBJ)
 
 .PHONY: all clean fclean re #bonus
