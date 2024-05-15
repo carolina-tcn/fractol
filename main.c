@@ -14,9 +14,13 @@
 
 int main(int argc, char **argv)
 {
-	(void)argv;
+	t_fractal	fract;
+
 	if (argc < 2)
+	{
 		ft_printf("%s", ERROR_1);
-	//check_args(argc, argv);
+		exit(1);
+	}	
+	check_args(argc, argv, &fract);
 	return (0);
 }
