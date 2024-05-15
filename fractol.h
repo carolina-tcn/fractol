@@ -25,10 +25,11 @@
 # define ESC 53
 # define MOUSE_UP 5
 # define MOUSE_DOWN 4
-# define ERROR_1		"NO INPUT\n"
+# define ERROR_1		"'NO INPUT\n"
 # define ERROR_2		"INVALID INPUT\n\n"
-# define ERROR_3		"List of parameters:\n\tOption(1): Mandelbrot\n\tOption(2): Julia <parameter 2> <parameter 3>\n\n" 
-# define ERROR_4		"\tRange of parameters for variations ... < -2 ≤ x ≤ 2> ... < -2 ≤ y ≤ 2 >\n"
+# define ERROR_3		"·INSTRUCTIONS·\nList of parameters:\n\tOption(1): Mandelbrot\n\tOption(2): Julia <parameter 2> <parameter 3>\n\n" 
+# define ERROR_4		"\tRange of parameters for variations ... < -2 ≤ X ≤ 2> ... < -2 ≤ Y ≤ 2 >\n"
+# define ERROR_5		"\t---A maximum of 6 decimals is allowed---\n"
 
 typedef struct s_complex
 {
@@ -49,7 +50,8 @@ typedef struct	s_fractal
 	t_complex	c;
 }			t_fractal;
 
-void check_args(int argc, char **argv, t_fractal *fractal);
-
+void	check_args(int argc, char **argv, t_fractal *fractal);
+double	ft_atod(const char *str, double res, double decimal, int i);
+void	print_error_exit(void);
 
 #endif
