@@ -5,60 +5,49 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ctacconi <ctacconi@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/18 16:04:04 by ctacconi          #+#    #+#              #
-#    Updated: 2024/05/05 10:16:03 by carolinat        ###   ########.fr        #
+#    Created: 2024/05/13 16:38:12 by ctacconi          #+#    #+#              #
+#    Updated: 2024/05/13 18:13:13 by ctacconi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
-SRC = main.c
+SRC = main.c check_args.c
 
 OBJ = $(SRC:.c=.o)
-
-# BONUS=ft_lstnew.c \
-	ft_lstadd_front.c \
-	ft_lstsize.c \
-	ft_lstlast.c \
-	ft_lstadd_back.c \
-	ft_lstdelone.c	\
-	ft_lstclear.c \
-	ft_lstiter.c \
-	ft_lstmap.c
-
-# BONUS_OBJ=$(BONUS:.c=.o)
 
 CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
-INCLUDE = Makefile fractol.h mlx/mlx.h
+INCLUDE = Makefile fractol.h
 
-#LIB=ar rcs
+RM = rm -f
 
-RM=rm -f
-
-all: $(NAME)
-
-make_libs:
-	Make -C mlx/
-
-$(NAME): $(OBJ) make_libs
-	$(LIB) $(NAME) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework Appkit -o $(NAME)
-
+# Implicit method
 %.o: %.c $(INCLUDE)
 	$(CC) $(CFLAGS) -Imlx -o $@ -c $<
 
+# My methods
+all: make_libs $(NAME)
+
+make_libs:
+	Make -C mlx/
+	Make -C ft_printf/
+
+$(NAME): $(OBJ) make_libs
+	cp ft_printf/libftprintf.a $(NAME)
+	$(CC) $(NAME) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework Appkit -o $(NAME)
+
 clean:
-	$(RM) $(OBJ) #$(BONUS_OBJ)
+	$(RM) $(OBJ)
 	Make -C mlx/ clean
+	Make -C ft_printf/ clean
 
 fclean: clean
 	$(RM) $(NAME)
+	Make -C ft_printf/ fclean
 
 re: fclean all
 
-#bonus: $(OBJ) $(BONUS_OBJ) Makefile libft.h
-	#$(LIB) $(NAME) $(OBJ) $(BONUS_OBJ)
-
-.PHONY: all clean fclean re #bonus
+.PHONY: all clean fclean re
