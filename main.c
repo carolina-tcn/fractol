@@ -28,5 +28,7 @@ int main(int argc, char **argv)
 		exit(1);
 	}	
 	check_args(argc, argv, &fract);
+	init(&fract);
+	render_fractal(&fract);
 	return (0);
 }

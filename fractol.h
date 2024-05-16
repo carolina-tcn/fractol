@@ -33,8 +33,8 @@
 
 typedef struct s_complex
 {
-	double x;
-	double y;
+	double x; //real
+	double y; //imaginary
 }			t_complex;
 
 typedef struct	s_fractal
@@ -43,11 +43,16 @@ typedef struct	s_fractal
 	void		*win_ptr;
 	void		*img_ptr;
 	char		*addr;
-	int 		bits_per_pixel;
+	int 		bpp;
 	int			line_lenght;
 	int			endian;
 	char 		*name;
 	t_complex	c;
+	t_complex	shift_c;
+	t_complex	z;
+	double		zoom;
+	double		definition;
+
 }			t_fractal;
 
 void	check_args(int argc, char **argv, t_fractal *fractal);
