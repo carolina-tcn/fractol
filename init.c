@@ -36,6 +36,7 @@ void	data_init(t_fractal *fractal)
 	fractal.z.x = 0.0;
 	fractal.z.y = 0.0;
 	fractal.definition = 1060;
+	fractal.limit = 4.0;
 }
 
 void	init(t_fractal *fractal)
