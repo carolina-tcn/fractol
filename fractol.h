@@ -70,11 +70,11 @@ typedef struct	s_fractal
 	void		*img_ptr;
 	char		*addr;
 	int 		bpp;
-	int			line_lenght;
+	int			line_length;
 	int			endian;
 	char 		*name;
-	t_complex	c;
 	t_complex	shift_c;
+	t_complex	c;
 	t_complex	z;
 	double		zoom;
 	double		definition;
@@ -85,5 +85,7 @@ typedef struct	s_fractal
 void	check_args(int argc, char **argv, t_fractal *fractal);
 double	ft_atod(const char *str, double res, double decimal, int i);
 void	print_error_exit(void);
+void	init(t_fractal *fractal);
+void	render_fractal(t_fractal *fractal);
 
 #endif

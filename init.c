@@ -23,20 +23,18 @@ void	start_mlx(t_fractal *fractal)
 	fractal->img_ptr = mlx_new_image(fractal->mlx_ptr, WIDTH, HEIGHT);
 	//if (!fractal->img_ptr)
 	//	error
-	fractal->addr = mlx_get_data_addr(fractal->img_ptr, &fractal->bpp, &fractal->line_lenght, &fractal->endian);
+	fractal->addr = mlx_get_data_addr(fractal->img_ptr, &fractal->bpp, &fractal->line_length, &fractal->endian);
 	//if (!fractal->img_ptr)
 	//	error
 }
 
 void	data_init(t_fractal *fractal)
 {
-	fractal.shift_c.x = 0.0;
-	fractal.shift_c.y = 0.0;
-	fractal.zoom = 1.0;
-	fractal.z.x = 0.0;
-	fractal.z.y = 0.0;
-	fractal.definition = 1060;
-	fractal.limit = 4.0;
+	fractal->shift_c.x = 0.0;
+	fractal->shift_c.y = 0.0;
+	fractal->zoom = 1.0;
+	fractal->definition = 1060;
+	fractal->limit = 4.0;
 }
 
 void	init(t_fractal *fractal)

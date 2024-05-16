@@ -36,7 +36,7 @@ t_complex square_complex(t_complex z)
 {
 	t_complex	result;
 
-	result.x = pow(x, 2) - pow(y, 2);
+	result.x = pow(z.x, 2) - pow(z.y, 2);
 	result.y = 2 * z.x * z.y;
 	return (result);
 
@@ -46,7 +46,7 @@ void	put_pixel(int x, int y, int color, t_fractal *fractal)
 {
 	int pixels;
 
-	pixels = (y * fractal.line_length) + (x * fractal.bpp / 8);
+	pixels = (y * fractal->line_length) + (x * fractal->bpp / 8);
 	*(unsigned int *)(fractal->addr + pixels) = color;
 }
 
@@ -55,25 +55,31 @@ void	img_mandelbrot(t_fractal *fractal, int x, int y)
 {
 	int i;
 	int color;
+	t_complex z;
+	t_complex c;
 	//z = z^2 + c
 	//z initially is 0
 	//c is the actual point
-	x = map(x, -2, 2, 0, WIDTH);
-	y = map(y, -2, 2, 0, HEIGHT);
-	fractal->c.x = x * fractal.zoom + fractal->shift_c.x;
-	fractal->c.y = y * fractal.zoom + fractal->shift_c.y;
+	x = map(x, -2, 2, WIDTH);
+	y = map(y, -2, 2, HEIGHT);
+	c.x = (x * fractal->zoom) + fractal->shift_c.x;
+	c.y = (y * fractal->zoom) + fractal->shift_c.y;
+	z.x = 0.0;
+	z.y = 0.0;
 	i = 0;
 
-	while (i < fractal.definition)
+	while (i < fractal->definition)
 	{
-		fractal.z = sum_complex(square_complex(z), c);
-		if((pow(fractal->z.x, 2) + pow(fractal->z.y, 2)) > fractal.limit)
+		z = sum_complex(square_complex(z), c);
+		if((pow(z.x, 2) + pow(z.y, 2)) > fractal->limit)
 		{
-			color = map(i, BLACK, WHITE, fractal.definition);
-			put_pixel(x, y, &fractal, color);
+			color = map(i, BLACK, WHITE, fractal->definition);
+			put_pixel(x, y, color, fractal);
+			return ;
 		}
+		i++;
 	}
-	put_pixel(x, y, &fractal, NEON_BLUE);
+	put_pixel(x, y, WHITE, fractal);
 }
 
 /*oid	img_julia(t_fractal *fractal, int x, int y)
@@ -93,10 +99,10 @@ void	render_fractal(t_fractal *fractal)
 		x = 0;
 		while (x < WIDTH)
 		{
-			if (fractal->name == "mandelbrot")
+			if (!ft_strncmp("mandelbrot", fractal->name, 10))
 				img_mandelbrot(fractal, x, y); 
-			else if (fractal->name == "julia")
-				img_julia(fractal, x, y);
+			//else if (!ft_strncmp("julia", fractal->name, 5))
+			//	img_julia(fractal, x, y);
 			x++;
 		}
 		y++;
