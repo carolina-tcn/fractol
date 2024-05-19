@@ -30,5 +30,6 @@ int main(int argc, char **argv)
 	check_args(argc, argv, &fract);
 	init(&fract);
 	render_fractal(&fract);
+	mlx_loop(fract.mlx_ptr);
 	return (0);
 }

@@ -32,6 +32,7 @@
 # define ERROR_3		"·INSTRUCTIONS·\nList of parameters:\n\tOption(1): Mandelbrot\n\tOption(2): Julia <parameter 2> <parameter 3>\n\n" 
 # define ERROR_4		"\tRange of parameters for variations ... < -2 ≤ X ≤ 2> ... < -2 ≤ Y ≤ 2 >\n"
 # define ERROR_5		"\t---A maximum of 6 decimals is allowed---\n"
+# define MLX_ERROR	1
 
 # define BLACK   0x000000
 # define WHITE   0xFFFFFF
