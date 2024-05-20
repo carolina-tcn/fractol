@@ -59,12 +59,10 @@ void	data_init(t_fractal *fractal)
 	fractal->shift_c.x = 0.0;
 	fractal->shift_c.y = 0.0;
 	fractal->zoom = 1.0;
-	fractal->definition = 42;
+	fractal->definition = 800;
 	fractal->limit = 4.0;
-	//fractal->z.x = 0.0;
-	//fractal->z.y = 0.0;
-	//fractal->c.x = 0.0;
-	//fractal->c.y = 0.0;
+	fractal->z.x = 0.0;
+	fractal->z.y = 0.0;
 }
 
 void	init(t_fractal *fractal)

@@ -21,12 +21,12 @@ double	map(double unscaled_num, double new_min, double new_max, double old_max)
 	return ((new_max - new_min) * (unscaled_num - old_min) / (old_max - old_min) + new_min);
 }
 
-t_complex	sum_complex(t_complex z1, t_complex z2)
+t_complex	sum_complex(t_complex z1, t_complex c)
 {
 	t_complex result;
 
-	result.x = z1.x + z2.x;
-	result.y = z1.y + z2.y;
+	result.x = z1.x + c.x;
+	result.y = z1.y + c.y;
 	return (result);
 }
 
@@ -60,32 +60,47 @@ void	img_mandelbrot(t_fractal *fractal, int x, int y)
 	int i;
 	int color;
 	
-	z.x = (map(x, -2, 2, WIDTH) * fractal->zoom) + fractal->shift_c.x;
-	z.y = (map(y, -2, 2, HEIGHT) * fractal->zoom) + fractal->shift_c.x;
-	//fractal->c.x = x * fractal->zoom + fractal->shift_c.x;
-	//fractal->c.y = y * fractal->zoom + fractal->shift_c.y;
-	c.x = z.x;
-	c.y = z.y;
+	c.x = (map(x, -2, 2, WIDTH) * fractal->zoom) + fractal->shift_c.x;
+	c.y = (map(y, -2, 2, HEIGHT) * fractal->zoom) + fractal->shift_c.x;
 	i = 0;
 
-	//(pow(fractal->z.x, 2) + pow(fractal->z.y, 2) < fractal->limit)
 	while (i < fractal->definition)
 	{
-		/*tmp = pow(fractal->z.x, 2) - pow(fractal->z.y, 2) + fractal->c.x;
-		fractal->z.y = 2 * fractal->z.x * fractal->z.y + fractal->c.y;
-		fractal->z.x = tmp;
-		i++;*/
-		
 		z = sum_complex(square_complex(z), c);
 		if(pow(z.x, 2) + pow(z.y, 2) > fractal->limit)
 		{
-			color = map(i, RED, WHITE, fractal->definition);
+			color = map(i, BLUE, PURPLE, fractal->definition);
 			my_put_pixel(x, y, color, fractal);
 			return ;
 		}
 		i++;
 	}
-	my_put_pixel(x, y, AQUA, fractal);
+	my_put_pixel(x, y, BLACK, fractal);
+}
+
+void	img_julia(t_fractal *fractal, int x, int y)
+{
+	t_complex	z;
+	//t_complex	c;
+	int i;
+	int color;
+	
+	z.x = (map(x, -2, 2, WIDTH) * fractal->zoom) + fractal->shift_c.x;
+	z.y = (map(y, -2, 2, HEIGHT) * fractal->zoom) + fractal->shift_c.x;
+	i = 0;
+
+	while (i < fractal->definition)
+	{
+		z = sum_complex(square_complex(z), fractal->c);
+		if(pow(z.x, 2) + pow(z.y, 2) > fractal->limit)
+		{
+			color = map(i, BLUE, PURPLE, fractal->definition);
+			my_put_pixel(x, y, color, fractal);
+			return ;
+		}
+		i++;
+	}
+	my_put_pixel(x, y, BLACK, fractal);
 }
 
 void	render_fractal(t_fractal *fractal)
@@ -101,9 +116,8 @@ void	render_fractal(t_fractal *fractal)
 		{
 			if (!ft_strncmp("mandelbrot", fractal->name, 10))
 				img_mandelbrot(fractal, x, y); 
-			//else if (!ft_strncmp("julia", fractal->name, 5))
-			//	img_julia(fractal, x, y);
-			//my_put_pixel(x, y, color, fractal);
+			else if (!ft_strncmp("julia", fractal->name, 5))
+				img_julia(fractal, x, y);
 			x++;
 		}
 		y++;

@@ -77,7 +77,7 @@ typedef struct	s_fractal
 	char 		*name;
 	t_complex	shift_c;
 	t_complex	c;
-	//t_complex	z;
+	t_complex	z;
 	double		zoom;
 	double		definition;
 	double		limit;
