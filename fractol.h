@@ -33,6 +33,7 @@
 # define ERROR_4		"\tRange of parameters for variations ... < -2 ≤ X ≤ 2> ... < -2 ≤ Y ≤ 2 >\n"
 # define ERROR_5		"\t---A maximum of 6 decimals is allowed---\n"
 # define MLX_ERROR	1
+# define EXIT_FAILURE 1
 
 # define BLACK   0x000000
 # define WHITE   0xFFFFFF
@@ -76,7 +77,7 @@ typedef struct	s_fractal
 	char 		*name;
 	t_complex	shift_c;
 	t_complex	c;
-	t_complex	z;
+	//t_complex	z;
 	double		zoom;
 	double		definition;
 	double		limit;

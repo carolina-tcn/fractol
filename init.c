@@ -26,32 +26,32 @@ void ft_terminate(t_fractal *fractal)
 void	start_mlx(t_fractal *fractal)
 {
 	fractal->mlx_ptr = mlx_init();
-	/*if (!fractal->mlx_ptr)
+	if (!fractal->mlx_ptr)
 	{
 		ft_error();
 		exit(MLX_ERROR);
-	}*/
+	}
 	fractal->win_ptr = mlx_new_window(fractal->mlx_ptr, WIDTH, HEIGHT, fractal->name);
-	/*if (!fractal->win_ptr)
+	if (!fractal->win_ptr)
 	{
 		ft_error();
 		ft_terminate(fractal);
 		exit(MLX_ERROR);
-	}	*/
+	}
 	fractal->img_ptr = mlx_new_image(fractal->mlx_ptr, WIDTH, HEIGHT);
-	/*if (!fractal->win_ptr)
+	if (!fractal->win_ptr)
 	{
 		ft_error();
 		ft_terminate(fractal);
 		exit(MLX_ERROR);
-	}*/
+	}
 	fractal->addr = mlx_get_data_addr(fractal->img_ptr, &fractal->bpp, &fractal->line_length, &fractal->endian);
-	/*if (!fractal->addr)
+	if (!fractal->addr)
 	{
 		ft_error();
 		ft_terminate(fractal);
 		exit(MLX_ERROR);
-	}*/
+	}
 }
 
 void	data_init(t_fractal *fractal)
@@ -59,18 +59,17 @@ void	data_init(t_fractal *fractal)
 	fractal->shift_c.x = 0.0;
 	fractal->shift_c.y = 0.0;
 	fractal->zoom = 1.0;
-	fractal->definition = 1000;
+	fractal->definition = 42;
 	fractal->limit = 4.0;
-	fractal->z.x = 0.0;
-	fractal->z.y = 0.0;
-	fractal->c.x = 0.0;
-	fractal->c.y = 0.0;
+	//fractal->z.x = 0.0;
+	//fractal->z.y = 0.0;
+	//fractal->c.x = 0.0;
+	//fractal->c.y = 0.0;
 }
 
 void	init(t_fractal *fractal)
 {
-	data_init(fractal);
 	start_mlx(fractal);
-	//event_init();
-	
+	//events_init(fractal);
+	data_init(fractal);
 }

@@ -16,7 +16,7 @@
 double	map(double unscaled_num, double new_min, double new_max, double old_max)
 {
 	double old_min;
-
+   
 	old_min = 0;
 	return ((new_max - new_min) * (unscaled_num - old_min) / (old_max - old_min) + new_min);
 }
@@ -50,50 +50,34 @@ void	my_put_pixel(int x, int y, int color, t_fractal *fractal)
 	*(unsigned int *)pixels = color;
 }
 
-int	create_trgb(int t, int r, int g, int b)
-{
-	return (t << 24 | r << 16 | g << 8 | b);
-}
-
-int	color_fract(int i)
-{
-	int	color;
-	int	r;
-	int	g;
-	int	b;
-
-	r = (i * 10) % 255;
-	g = (i * 7) % 255;
-	b = (i * 5) % 255;
-	color = create_trgb(0, r, g, b);
-	return (color);
-}
-//handle pixel
 //z = z^2 + c
 //z initially is 0
 //c is the actual point
 void	img_mandelbrot(t_fractal *fractal, int x, int y)
 {
+	t_complex	z;
+	t_complex	c;
 	int i;
-	//double tmp;
 	int color;
 	
-	x = map(x, -2, 2, WIDTH);
-	y = map(y, -2, 2, HEIGHT);
-	fractal->c.x = x * fractal->zoom + fractal->shift_c.x;
-	fractal->c.y = y * fractal->zoom + fractal->shift_c.y;
+	z.x = (map(x, -2, 2, WIDTH) * fractal->zoom) + fractal->shift_c.x;
+	z.y = (map(y, -2, 2, HEIGHT) * fractal->zoom) + fractal->shift_c.x;
+	//fractal->c.x = x * fractal->zoom + fractal->shift_c.x;
+	//fractal->c.y = y * fractal->zoom + fractal->shift_c.y;
+	c.x = z.x;
+	c.y = z.y;
 	i = 0;
 
 	//(pow(fractal->z.x, 2) + pow(fractal->z.y, 2) < fractal->limit)
-	while ((pow(fractal->z.x, 2) + pow(fractal->z.y, 2) < fractal->limit && (i <fractal->definition)))
+	while (i < fractal->definition)
 	{
 		/*tmp = pow(fractal->z.x, 2) - pow(fractal->z.y, 2) + fractal->c.x;
 		fractal->z.y = 2 * fractal->z.x * fractal->z.y + fractal->c.y;
 		fractal->z.x = tmp;
 		i++;*/
 		
-		fractal->z = sum_complex(square_complex(fractal->z), fractal->c);
-		if((pow(fractal->z.x, 2) + pow(fractal->z.y, 2)) > fractal->limit)
+		z = sum_complex(square_complex(z), c);
+		if(pow(z.x, 2) + pow(z.y, 2) > fractal->limit)
 		{
 			color = map(i, RED, WHITE, fractal->definition);
 			my_put_pixel(x, y, color, fractal);
@@ -104,18 +88,10 @@ void	img_mandelbrot(t_fractal *fractal, int x, int y)
 	my_put_pixel(x, y, AQUA, fractal);
 }
 
-/*oid	img_julia(t_fractal *fractal, int x, int y)
-{
-	//z = z^2 + cs
-
-}*/
-
 void	render_fractal(t_fractal *fractal)
 {
 	int x;
 	int y;
-
-	//int color;
 
 	y = 0;
 	while (y < HEIGHT)
