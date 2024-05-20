@@ -21,7 +21,7 @@
 # include <math.h>
 
 # define WIDTH 800
-# define HEIGHT 800
+# define HEIGHT 600
 
 # define ESC 53
 # define MOUSE_UP 5
