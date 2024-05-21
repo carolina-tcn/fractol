@@ -39,6 +39,39 @@ void	my_put_pixel(int x, int y, int color, t_fractal *fractal)
 	*(unsigned int *)pixels = color;
 }
 
+int	create_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
+}
+
+//useful to color the fractal and to show the depth of the fractal
+int	color_mandelbrot(int i)
+{
+	int	color;
+	int	r;
+	int	g;
+	int	b;
+
+	r = (i * 9) % 255;
+	g = (i * 2) % 255;
+	b = (i * 9) % 255;
+	color = create_trgb(0, r, g, b);
+	return (color);
+}
+
+int	color_julia(int i)
+{
+	int	color;
+	int	r;
+	int	g;
+	int	b;
+
+	r = (i * 2) % 255;
+	g = (i * 5) % 255;
+	b = (i * 9) % 255;
+	color = create_trgb(0, r, g, b);
+	return (color);
+}
 //z = z^2 + c
 //z initially is 0
 //c is the actual point
@@ -47,7 +80,7 @@ void	img_mandelbrot(t_fractal *fractal, int x, int y)
 	t_complex	z;
 	t_complex	c;
 	int i;
-	int color;
+	//int color;
 	
 	c.x = (map(x, -2, 1.2, WIDTH) * fractal->zoom) + fractal->shift_c.x;
 	c.y = (map(y, -1.2, 1.2, HEIGHT) * fractal->zoom) + fractal->shift_c.x;
@@ -58,8 +91,9 @@ void	img_mandelbrot(t_fractal *fractal, int x, int y)
 		z = sum_complex(z, c);
 		if(pow(z.x, 2) + pow(z.y, 2) > fractal->limit)
 		{
-			color = map(i, BLUE, PURPLE, fractal->definition);
-			my_put_pixel(x, y, color, fractal);
+			//color = map(i, BLUE, PURPLE, fractal->definition);
+			//color = color_fractal(i);
+			my_put_pixel(x, y, color_mandelbrot(i), fractal);
 			return ;
 		}
 		i++;
@@ -72,7 +106,7 @@ void	img_julia(t_fractal *fractal, int x, int y)
 	t_complex	z;
 	//t_complex	c;
 	int i;
-	int color;
+	//int color;
 	
 	z.x = (map(x, -2, 2, WIDTH) * fractal->zoom) + fractal->shift_c.x;
 	z.y = (map(y, -1.5, 1.5, HEIGHT) * fractal->zoom) + fractal->shift_c.x;
@@ -83,8 +117,9 @@ void	img_julia(t_fractal *fractal, int x, int y)
 		z = sum_complex(z, fractal->c);
 		if(pow(z.x, 2) + pow(z.y, 2) > fractal->limit)
 		{
-			color = map(i, BLUE, PURPLE, fractal->definition);
-			my_put_pixel(x, y, color, fractal);
+			//color = map(i, BLUE, PURPLE, fractal->definition);
+			//color = color_fractal(i);
+			my_put_pixel(x, y, color_julia(i), fractal);
 			return ;
 		}
 		i++;
