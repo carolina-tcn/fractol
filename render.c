@@ -84,7 +84,7 @@ void	img_mandelbrot(t_fractal *fractal, int x, int y)
 	z.x = 0.0;
 	z.y = 0.0;
 	c.x = (map(x, -2, 1.2, WIDTH) * fractal->zoom) + fractal->shift.x;
-	c.y = (map(y, -1.2, 1.2, HEIGHT) * fractal->zoom) + fractal->shift.x;
+	c.y = (map(y, -1.2, 1.2, HEIGHT) * fractal->zoom) + fractal->shift.y;
 	i = 0;
 
 	while (i < fractal->definition)
