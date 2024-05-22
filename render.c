@@ -80,6 +80,7 @@ void	img_mandelbrot(t_fractal *fractal, int x, int y)
 	t_complex	z;
 	t_complex	c;
 	int i;
+	double	tmp_x;
 	//int color;
 	z.x = 0.0;
 	z.y = 0.0;
@@ -90,14 +91,16 @@ void	img_mandelbrot(t_fractal *fractal, int x, int y)
 	while (i < fractal->definition)
 	{
 		
-		if(pow(z.x, 2) + pow(z.y, 2) > fractal->limit)
+		if((z.x * z.x + z.y * z.y) > fractal->limit)
 		{
 			//color = map(i, BLUE, PURPLE, fractal->definition);
 			//color = color_fractal(i);
 			my_put_pixel(x, y, color_mandelbrot(i), fractal);
 			return ;
 		}
-		z = sum_complex(z, c);
+		tmp_x = z.x * z.x - z.y * z.y + c.x;
+                z.y = 2 * z.x * z.y + c.y;
+                z.x = tmp_x;
 		i++;
 	}
 	my_put_pixel(x, y, BLACK, fractal);
