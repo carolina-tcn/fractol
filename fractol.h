@@ -27,7 +27,7 @@
 # define MOUSE_UP 5
 # define MOUSE_DOWN 4
 
-# define ERROR_1		"'NO INPUT\n"
+# define ERROR_1		"NO INPUT\n"
 # define ERROR_2		"INVALID INPUT\n\n"
 # define ERROR_3		"·INSTRUCTIONS·\nList of parameters:\n\tOption(1): Mandelbrot\n\tOption(2): Julia <parameter 2> <parameter 3>\n\n" 
 # define ERROR_4		"\tRange of parameters for variations ... < -2 ≤ X ≤ 2> ... < -2 ≤ Y ≤ 2 >\n"
@@ -59,6 +59,16 @@
 # define NEON_AQUA   0x00FFFF
 # define NEON_LIME   0x00FF7F
 
+# define ESC				53 //keycode for ESC on the keyboard
+# define ARROW_LEFT			123 //keycode for the left arrow on the keyboard
+# define ARROW_RIGHT		124 //keycode for the right arrow on the keyboard
+# define ARROW_DOWN			125 //keycode for the down arrow on the keyboard
+# define ARROW_UP			126 //keycode for the up arrow on the keyboard
+# define SCROLLUP			4 //keycode for the frontward mouse scroll 
+# define SCROLLDOWN			5 //keycode for the backward mouse scroll
+# define SHIFT				257 //keycode for the SHIFT arrow on the keyboard
+# define TAB				48 //keycode for the TAB on the keyboard
+
 typedef struct s_complex
 {
 	double x; //real
@@ -75,7 +85,7 @@ typedef struct	s_fractal
 	int			line_length;
 	int			endian;
 	char 		*name;
-	t_complex	shift_c;
+	t_complex	shift;
 	t_complex	c;
 	t_complex	z;
 	double		zoom;
@@ -83,6 +93,17 @@ typedef struct	s_fractal
 	double		limit;
 
 }			t_fractal;
+
+enum
+{
+	ON_KEYDOWN = 2,
+	ON_KEYUP = 3,
+	ON_MOUSEDOWN = 4,
+	ON_MOUSEUP = 5,
+	ON_MOUSEMOVE = 6,
+	ON_EXPOSE = 12,
+	ON_DESTROY = 17
+};
 
 void	check_args(int argc, char **argv, t_fractal *fractal);
 double	ft_atod(const char *str, double res, double decimal, int i);

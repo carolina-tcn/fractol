@@ -81,14 +81,15 @@ void	img_mandelbrot(t_fractal *fractal, int x, int y)
 	t_complex	c;
 	int i;
 	//int color;
-	
-	c.x = (map(x, -2, 1.2, WIDTH) * fractal->zoom) + fractal->shift_c.x;
-	c.y = (map(y, -1.2, 1.2, HEIGHT) * fractal->zoom) + fractal->shift_c.x;
+	z.x = 0.0;
+	z.y = 0.0;
+	c.x = (map(x, -2, 1.2, WIDTH) * fractal->zoom) + fractal->shift.x;
+	c.y = (map(y, -1.2, 1.2, HEIGHT) * fractal->zoom) + fractal->shift.x;
 	i = 0;
 
 	while (i < fractal->definition)
 	{
-		z = sum_complex(z, c);
+		
 		if(pow(z.x, 2) + pow(z.y, 2) > fractal->limit)
 		{
 			//color = map(i, BLUE, PURPLE, fractal->definition);
@@ -96,6 +97,7 @@ void	img_mandelbrot(t_fractal *fractal, int x, int y)
 			my_put_pixel(x, y, color_mandelbrot(i), fractal);
 			return ;
 		}
+		z = sum_complex(z, c);
 		i++;
 	}
 	my_put_pixel(x, y, BLACK, fractal);
@@ -108,8 +110,8 @@ void	img_julia(t_fractal *fractal, int x, int y)
 	int i;
 	//int color;
 	
-	z.x = (map(x, -2, 2, WIDTH) * fractal->zoom) + fractal->shift_c.x;
-	z.y = (map(y, -1.5, 1.5, HEIGHT) * fractal->zoom) + fractal->shift_c.x;
+	z.x = (map(x, -2, 2, WIDTH) * fractal->zoom) + fractal->shift.x;
+	z.y = (map(y, -1.5, 1.5, HEIGHT) * fractal->zoom) + fractal->shift.x;
 	i = 0;
 
 	while (i < fractal->definition)
