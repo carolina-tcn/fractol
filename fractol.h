@@ -110,5 +110,10 @@ double	ft_atod(const char *str, double res, double decimal, int i);
 void	print_error_exit(void);
 void	init(t_fractal *fractal);
 void	render_fractal(t_fractal *fractal);
+int	manage_key(int keycode, t_fractal *fractal);
+int	mouse_hook(int keycode, int x, int y, t_fractal *fractal);
+int	close_red_cross(t_fractal *fractal);
+
+
 
 #endif
