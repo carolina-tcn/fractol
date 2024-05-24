@@ -59,15 +59,15 @@
 # define NEON_AQUA   0x00FFFF
 # define NEON_LIME   0x00FF7F
 
-# define ESC				53 //keycode for ESC on the keyboard
-# define ARROW_LEFT			123 //keycode for the left arrow on the keyboard
-# define ARROW_RIGHT		124 //keycode for the right arrow on the keyboard
-# define ARROW_DOWN			125 //keycode for the down arrow on the keyboard
-# define ARROW_UP			126 //keycode for the up arrow on the keyboard
-# define SCROLLUP			4 //keycode for the frontward mouse scroll 
-# define SCROLLDOWN			5 //keycode for the backward mouse scroll
-# define SHIFT				257 //keycode for the SHIFT arrow on the keyboard
-# define TAB				48 //keycode for the TAB on the keyboard
+# define ESC				53
+# define ARROW_LEFT			123
+# define ARROW_RIGHT		124
+# define ARROW_DOWN			125
+# define ARROW_UP			126
+# define SCROLLUP			4
+# define SCROLLDOWN			5
+# define SHIFT				257
+# define TAB				48
 
 typedef struct s_complex
 {
@@ -113,7 +113,5 @@ void	render_fractal(t_fractal *fractal);
 int	manage_key(int keycode, t_fractal *fractal);
 int	mouse_hook(int keycode, int x, int y, t_fractal *fractal);
 int	close_red_cross(t_fractal *fractal);
-
-
 
 #endif
