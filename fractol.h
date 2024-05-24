@@ -135,6 +135,6 @@ void	init(t_fractal *fractal);
 void	render_fractal(t_fractal *fractal);
 int	manage_key(int keycode, t_fractal *fractal);
 int	mouse_hook(int keycode, int x, int y, t_fractal *fractal);
-int	close_red_cross(t_fractal *fractal);
+//int	close_red_cross(t_fractal *fractal);
 
 #endif

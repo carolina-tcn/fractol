@@ -21,7 +21,7 @@ int manage_key(int keycode, t_fractal *fractal)
         mlx_destroy_window(fractal->mlx_ptr, fractal->win_ptr);
         exit(0);
     }
-    if (keycode == ARROW_LEFT)
+    /*if (keycode == ARROW_LEFT)
     {
         fractal->xmin -= (fractal->xmax - fractal->xmin) * i;
         fractal->xmax -= (fractal->xmax - fractal->xmin) * i;
@@ -35,8 +35,8 @@ int manage_key(int keycode, t_fractal *fractal)
     else if (keycode == SHIFT)
         fractal->definition += 10;
     else if (keycode == TAB)
-        fractal->definition -= 10;
-    render_fractal(fractal);
+        fractal->definition -= 10;*/
+    //render_fractal(fractal);
     return (0);
 }
 
@@ -46,7 +46,7 @@ int	mouse_hook(int keycode, int x, int y, t_fractal *fractal)
 	(void)y;
 	if (keycode == SCROLLDOWN)
 	{
-		fractal->zoom *= 0.8;
+		fractal->zoom *= 0.9;
 	}
 	else if (keycode == SCROLLUP)
 	{

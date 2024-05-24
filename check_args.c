@@ -100,9 +100,12 @@ void	check_args(int argc, char **argv, t_fractal *fractal)
 {
 	int	i;
 
-	i = -1;
-	while (argv[1][i++])
-		argv[1][i] = ft_tolower(argv[1][i]);
+	i = 0;
+    while (argv[1][i])
+    {
+        argv[1][i] = ft_tolower(argv[1][i]);
+        i++;
+    }
 	if ((argc == 2 && !ft_strncmp(argv[1], "mandelbrot", 10))
 		|| (argc == 4 && !ft_strncmp(argv[1], "julia", 5)))
 	{

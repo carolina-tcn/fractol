@@ -33,11 +33,11 @@ double	map(double unscaled_num, double new_min, double new_max, double old_max)
 t_complex sum_complex(t_complex z, t_complex c)
 {
     t_complex result;
-    double zx_square;
-    double zy_square;
-    zx_square = z.x * z.x;
-    zy_square = z.y * z.y;
-    result.x = zx_square - zy_square + c.x;
+    //double zx_square;
+   // double zy_square;
+    //zx_square = z.x * z.x;
+    //zy_square = z.y * z.y;
+    result.x = z.x * z.x - z.y * z.y + c.x;
     result.y = 2 * z.x * z.y + c.y;
     return (result);
 }
@@ -56,7 +56,7 @@ int	create_trgb(int t, int r, int g, int b)
 }
 
 //useful to color the fractal and to show the depth of the fractal
-int	color_mandelbrot(int i)
+int	color(int i)
 {
 	int	color;
 	int	r;
@@ -70,19 +70,6 @@ int	color_mandelbrot(int i)
 	return (color);
 }
 
-int	color_julia(int i)
-{
-	int	color;
-	int	r;
-	int	g;
-	int	b;
-
-	r = (i * 2) % 255;
-	g = (i * 5) % 255;
-	b = (i * 9) % 255;
-	color = create_trgb(0, r, g, b);
-	return (color);
-}
 //z = z^2 + c
 //z initially is 0
 //c is the actual point
@@ -214,7 +201,7 @@ void    render_fractal(t_fractal *fractal)
             //else if (!ft_strncmp(fractal->name, "julia", 5))
             else if (fractal->type == 2)
                 i = img_julia(fractal, c);
-            my_put_pixel(x, y, color_julia(i), fractal);
+            my_put_pixel(x, y, color(i), fractal);
             x++;
         }
         y++;
