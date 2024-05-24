@@ -6,13 +6,13 @@
 #    By: ctacconi <ctacconi@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/13 16:38:12 by ctacconi          #+#    #+#              #
-#    Updated: 2024/05/21 19:43:27 by ctacconi         ###   ########.fr        #
+#    Updated: 2024/05/24 15:00:27 by ctacconi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
-SRC = main.c check_args.c utils.c init.c render.c
+SRC = main.c check_args.c utils.c init.c render.c events.c
 
 OBJ = $(SRC:.c=.o)
 
