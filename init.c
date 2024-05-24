@@ -56,8 +56,8 @@ void	start_mlx(t_fractal *fractal)
 
 void	data_init(t_fractal *fractal)
 {
-	fractal->shift_c.x = 0.0;
-	fractal->shift_c.y = 0.0;
+	fractal->shift.x = 0.0;
+	fractal->shift.y = 0.0;
 	fractal->zoom = 1.0;
 	fractal->definition = 250;
 	fractal->limit = 4.0;
