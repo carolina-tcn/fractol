@@ -108,10 +108,7 @@ typedef struct  s_fractal
     t_complex   shift;
     t_complex   c;
     t_complex   z;
-    double  xmin;
-    double  xmax;
-    double  ymin;
-    double  ymax;
+    int			color;
     double      zoom;
     double      definition;
     double      limit;

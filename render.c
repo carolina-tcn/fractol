@@ -34,7 +34,7 @@ t_complex sum_complex(t_complex z, t_complex c)
 {
     t_complex result;
     //double zx_square;
-   // double zy_square;
+    //double zy_square;
     //zx_square = z.x * z.x;
     //zy_square = z.y * z.y;
     result.x = z.x * z.x - z.y * z.y + c.x;
@@ -55,20 +55,34 @@ int	create_trgb(int t, int r, int g, int b)
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-//useful to color the fractal and to show the depth of the fractal
-int	color(int i)
+
+// int	color(int i)
+// {
+// 	int	color;
+// 	int	r;
+// 	int	g;
+// 	int	b;
+
+// 	r = (i * 9) % 255;
+// 	g = (i * 2) % 255;
+// 	b = (i * 9) % 255;
+// 	color = create_trgb(0, r, g, b);
+// 	return (color);
+// }
+
+int	color(int	color, int i)
 {
-	int	color;
 	int	r;
 	int	g;
 	int	b;
 
-	r = (i * 9) % 255;
-	g = (i * 2) % 255;
-	b = (i * 9) % 255;
-	color = create_trgb(0, r, g, b);
-	return (color);
+	r= (sin(0.1 * i) + 1) * 127 + ((color >> 16) & 0xFF);
+	g = (sin(0.2 * i) + 1) * 127 + ((color >> 8) & 0xFF);
+	b = (sin(0.3 * i) + 1) * 127 + (color & 0xFF);
+	return ((r << 16) | (g << 8) | b);
 }
+
+
 
 //z = z^2 + c
 //z initially is 0
@@ -201,7 +215,7 @@ void    render_fractal(t_fractal *fractal)
             //else if (!ft_strncmp(fractal->name, "julia", 5))
             else if (fractal->type == 2)
                 i = img_julia(fractal, c);
-            my_put_pixel(x, y, color(i), fractal);
+            my_put_pixel(x, y, color(fractal->color, i), fractal);
             x++;
         }
         y++;

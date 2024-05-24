@@ -70,14 +70,11 @@ void    data_init(t_fractal *fractal)
     fractal->shift.x= 0.0;
     fractal->shift.y = 0.0;
     fractal->zoom = 1.0;
-    fractal->definition = 250;
+    fractal->definition = 150;
     fractal->limit = 4.0;
     fractal->z.x = 0.0;
     fractal->z.y = 0.0;
-    fractal->xmin = -2.0;
-    fractal->xmax = 2.0;
-    fractal->ymin = -1.5;
-    fractal->ymax = 1.5;
+    fractal->color = PURPLE;
 }
 
 void	init(t_fractal *fractal)
