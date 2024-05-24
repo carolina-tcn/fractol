@@ -88,6 +88,14 @@ int	check_julia_args(char *str)
 	return (1);
 }
 
+void	assign_type(char *str, t_fractal *f)
+{
+	if (ft_strncmp(str, "mandelbrot", 10) == 0)
+		f->type = 1;
+	else
+		f->type = 2;
+}
+
 void	check_args(int argc, char **argv, t_fractal *fractal)
 {
 	int	i;
@@ -98,7 +106,8 @@ void	check_args(int argc, char **argv, t_fractal *fractal)
 	if ((argc == 2 && !ft_strncmp(argv[1], "mandelbrot", 10))
 		|| (argc == 4 && !ft_strncmp(argv[1], "julia", 5)))
 	{
-		fractal->name = argv[1];
+		assign_type(argv[1], fractal);
+		//fractal->name = argv[1];
 		if (argc == 4)
 		{
 			if (!check_julia_args(argv[2]) || !check_julia_args(argv[3]))

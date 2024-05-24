@@ -75,7 +75,7 @@ typedef struct s_complex
 	double y; //imaginary
 }			t_complex;
 
-typedef struct	s_fractal
+/*typedef struct	s_fractal
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
@@ -92,7 +92,30 @@ typedef struct	s_fractal
 	double		definition;
 	double		limit;
 
-}			t_fractal;
+}			t_fractal;*/
+
+typedef struct  s_fractal
+{
+    void        *mlx_ptr;
+    void        *win_ptr;
+    void        *img_ptr;
+    char        *addr;
+    int         bpp;
+    int         line_length;
+    int         endian;
+    //char        *name;
+    int 		type;
+    t_complex   shift;
+    t_complex   c;
+    t_complex   z;
+    double  xmin;
+    double  xmax;
+    double  ymin;
+    double  ymax;
+    double      zoom;
+    double      definition;
+    double      limit;
+}           t_fractal;
 
 enum
 {

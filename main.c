@@ -31,7 +31,7 @@ int main(int argc, char **argv)
 	init(&fract);
 	render_fractal(&fract);
 	mlx_hook(fract.win_ptr, 4, 0, mouse_hook, &fract);
-	mlx_key_hook(fract.win_ptr, manage_key, fract.mlx_ptr);
+	mlx_key_hook(fract.win_ptr, manage_key, &fract.mlx_ptr);
 	mlx_hook(fract.win_ptr, ON_DESTROY, 0, close_red_cross, fract.mlx_ptr);
 	mlx_loop(fract.mlx_ptr);
 	return (0);

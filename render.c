@@ -21,15 +21,26 @@ double	map(double unscaled_num, double new_min, double new_max, double old_max)
 	return ((new_max - new_min) * (unscaled_num - old_min) / (old_max - old_min) + new_min);
 }
 
-t_complex	sum_complex(t_complex z, t_complex c)
+/*t_complex	sum_complex(t_complex z, t_complex c)
 {
 	t_complex result;
 
 	result.x = pow(z.x, 2) - pow(z.y, 2) + c.x;
 	result.y = 2 * z.x * z.y + c.y;
 	return (result);
-}
+}*/
 
+t_complex sum_complex(t_complex z, t_complex c)
+{
+    t_complex result;
+    double zx_square;
+    double zy_square;
+    zx_square = z.x * z.x;
+    zy_square = z.y * z.y;
+    result.x = zx_square - zy_square + c.x;
+    result.y = 2 * z.x * z.y + c.y;
+    return (result);
+}
 
 void	my_put_pixel(int x, int y, int color, t_fractal *fractal)
 {
@@ -75,7 +86,7 @@ int	color_julia(int i)
 //z = z^2 + c
 //z initially is 0
 //c is the actual point
-void	img_mandelbrot(t_fractal *fractal, int x, int y)
+/*void	img_mandelbrot(t_fractal *fractal, int x, int y)
 {
 	t_complex	z;
 	t_complex	c;
@@ -104,9 +115,23 @@ void	img_mandelbrot(t_fractal *fractal, int x, int y)
 		i++;
 	}
 	my_put_pixel(x, y, BLACK, fractal);
+}*/
+
+int img_mandelbrot(t_fractal *fractal, t_complex c)
+{
+    t_complex z = {0.0, 0.0};
+    int i = 0;
+    while (i < fractal->definition)
+    {
+        z = sum_complex(z, c);
+        if (z.x * z.x + z.y * z.y > fractal->limit)
+            return (i);
+        i++;
+    }
+    return (BLACK);
 }
 
-void	img_julia(t_fractal *fractal, int x, int y)
+/*void	img_julia(t_fractal *fractal, int x, int y)
 {
 	t_complex	z;
 	//t_complex	c;
@@ -130,9 +155,23 @@ void	img_julia(t_fractal *fractal, int x, int y)
 		i++;
 	}
 	my_put_pixel(x, y, BLACK, fractal);
+}*/
+
+int img_julia(t_fractal *fractal, t_complex z)
+{
+    int i;
+    i = 0;
+    while (i < fractal->definition)
+    {
+        z = sum_complex(z, fractal->c);
+        if (z.x * z.x + z.y * z.y > fractal->limit)
+            return (i) ;
+        i++;
+    }
+    return (i);
 }
 
-void	render_fractal(t_fractal *fractal)
+/*void	render_fractal(t_fractal *fractal)
 {
 	int x;
 	int y;
@@ -152,4 +191,33 @@ void	render_fractal(t_fractal *fractal)
 		y++;
 	}
 	mlx_put_image_to_window(fractal->mlx_ptr, fractal->win_ptr, fractal->img_ptr, 0, 0);
+}*/
+
+//hacer comparativa tipo int en lugar de strncmp
+void    render_fractal(t_fractal *fractal)
+{
+    int x;
+    int y;
+    int i;
+    t_complex   c;
+    y = 0;
+    while (y < HEIGHT)
+    {
+        c.y = (map(y, -1.5, 1.5, HEIGHT) * fractal->zoom) + fractal->shift.y;
+        x = 0;
+        while (x < WIDTH)
+        {
+            c.x = (map(x, -2, 2, WIDTH) * fractal->zoom) + fractal->shift.x;
+            //if (!ft_strncmp(fractal->name, "mandelbrot", 10))
+            if (fractal->type == 1) 
+                i = img_mandelbrot(fractal, c);
+            //else if (!ft_strncmp(fractal->name, "julia", 5))
+            else if (fractal->type == 2)
+                i = img_julia(fractal, c);
+            my_put_pixel(x, y, color_julia(i), fractal);
+            x++;
+        }
+        y++;
+    }
+    mlx_put_image_to_window(fractal->mlx_ptr, fractal->win_ptr, fractal->img_ptr, 0, 0);
 }
