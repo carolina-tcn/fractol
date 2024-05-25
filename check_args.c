@@ -6,7 +6,7 @@
 /*   By: ctacconi <ctacconi@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 19:05:26 by ctacconi          #+#    #+#             */
-/*   Updated: 2024/05/25 13:34:50 by ctacconi         ###   ########.fr       */
+/*   Updated: 2024/05/25 16:12:54 by ctacconi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,7 @@ void	check_args(int argc, char **argv, t_fractal *fractal)
 	{
 		assign_type(argv[1], fractal);
 		if (argc == 2 && !ft_strncmp(argv[1], "julia", 5))
-		{
-			fractal->c.x = -0.8;
-			fractal->c.y = 0.156;
-		}
+			assign_ex_julia(fractal);
 		else if (argc == 4)
 		{
 			if (!check_julia_args(argv[2]) || !check_julia_args(argv[3]))

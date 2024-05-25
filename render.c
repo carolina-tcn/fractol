@@ -6,7 +6,7 @@
 /*   By: ctacconi <ctacconi@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 19:06:11 by ctacconi          #+#    #+#             */
-/*   Updated: 2024/05/25 15:58:06 by ctacconi         ###   ########.fr       */
+/*   Updated: 2024/05/25 16:16:24 by ctacconi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	img_mandelbrot(t_fractal *fractal, t_complex c)
 	int			i;
 
 	z.x = 0.0;
-   	z.y = 0.0;
+	z.y = 0.0;
 	i = 0;
 	while (i < fractal->definition)
 	{

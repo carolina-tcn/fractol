@@ -6,16 +6,11 @@
 /*   By: ctacconi <ctacconi@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 19:05:51 by ctacconi          #+#    #+#             */
-/*   Updated: 2024/05/25 15:42:05 by ctacconi         ###   ########.fr       */
+/*   Updated: 2024/05/25 16:17:24 by ctacconi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-void	ft_error(void)
-{
-	printf("Memory allocation failure\n");
-}
 
 void	ft_terminate(t_fractal *fractal)
 {
@@ -39,6 +34,10 @@ void	start_mlx(t_fractal *fractal)
 		ft_terminate(fractal);
 		exit(MLX_ERROR);
 	}
+}
+
+void	start_img(t_fractal *fractal)
+{
 	fractal->img_ptr = mlx_new_image(fractal->mlx_ptr, WIDTH, HEIGHT);
 	if (!fractal->win_ptr)
 	{
@@ -71,5 +70,6 @@ void	data_init(t_fractal *fractal)
 void	init(t_fractal *fractal)
 {
 	start_mlx(fractal);
+	start_img(fractal);
 	data_init(fractal);
 }

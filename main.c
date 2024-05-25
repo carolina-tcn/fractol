@@ -14,8 +14,24 @@
 
 void	print_error_exit(void)
 {
-	ft_printf("%s%s%s%s", ERROR_1, ERROR_2, ERROR_3, ERROR_4);
+	ft_printf("%s%s%s%s%s%s%s", ERROR_1, ERROR_2, ERROR_3,
+		ERROR_4, ERROR_5, ERROR_6, ERROR_7);
 	exit (EXIT_FAILURE);
+}
+
+void	ft_error(void)
+{
+	printf("Memory allocation failure\n");
+}
+
+//to rescale from 0...800 to -2...+2
+double	map(double unscaled_num, double new_min, double new_max, double old_max)
+{
+	double	old_min;
+
+	old_min = 0;
+	return ((new_max - new_min) * (unscaled_num - old_min)
+		/ (old_max - old_min) + new_min);
 }
 
 int	main(int argc, char **argv)

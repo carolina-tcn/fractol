@@ -24,35 +24,16 @@
 # define HEIGHT 600
 
 # define ERROR_1		"INVALID INPUT\n\n"
-# define ERROR_2		"·INSTRUCTIONS·\nList of parameters:\n\tOption(1): Mandelbrot\n\tOption(2): Julia <parameter 2> <parameter 3>\n\n" 
-# define ERROR_3		"\tRange of parameters for variations ...< -2 ≤ X ≤ 2> ... < -2 ≤ Y ≤ 2 >\n"
-# define ERROR_4		"\t---A maximum of 6 decimals is allowed (use .)---\n"
+# define ERROR_2		"·INSTRUCTIONS·\nList of parameters:\n\t"
+# define ERROR_3		"Option(1): Mandelbrot\n\t"
+# define ERROR_4		"Option(2): Julia <parameter 2> <parameter 3>\n\n" 
+# define ERROR_5		"\tRange of parameters for variations...< -2 ≤ X ≤ 2>"
+# define ERROR_6						"... < -2 ≤ Y ≤ 2 >\n"
+# define ERROR_7		"\t---A maximum of 6 decimals is allowed (use .)---\n"
 # define MLX_ERROR	1
 # define EXIT_FAILURE 1
 
-# define BLACK   0x000000
-# define WHITE   0xFFFFFF
-# define RED     0xFF0000
-# define GREEN   0x00FF00
-# define BLUE    0x0000FF
-# define YELLOW  0xFFFF00
-# define MAGENTA 0xFF00FF
-# define CYAN    0x00FFFF
-# define ORANGE  0xFFA500
-# define PURPLE  0x800080
-# define SKYBLUE 0x87CEEB
-# define AQUA    0x00FFFF
-# define LIME    0x00FF00
-# define NEON_PINK   0xFF69B4
-# define NEON_GREEN  0x39FF14
-# define NEON_YELLOW 0xFFFF00
-# define NEON_ORANGE 0xFF8C00
 # define NEON_BLUE   0x00BFFF
-# define NEON_PURPLE 0xBA55D3
-# define NEON_SKYBLUE 0x87CEEB
-# define NEON_RED    0xFF0000
-# define NEON_AQUA   0x00FFFF
-# define NEON_LIME   0x00FF7F
 
 # define ESC				53
 # define ARROW_LEFT			123
@@ -109,7 +90,10 @@ int		manage_key(int keycode, t_fractal *fractal);
 int		mouse_hook(int keycode, int x, int y, t_fractal *fractal);
 int		close_red_cross(t_fractal *fractal);
 void	assign_type(char *str, t_fractal *f);
-double	map(double unscaled_num, double new_min, double new_max, double old_max);
-int	color(int color, int i);
+double	map(double unscaled_num, double new_min,
+			double new_max, double old_max);
+int		color(int color, int i);
+void	assign_ex_julia(t_fractal *f);
+void	ft_error(void);
 
 #endif

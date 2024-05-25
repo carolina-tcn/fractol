@@ -6,7 +6,7 @@
 /*   By: ctacconi <ctacconi@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 19:06:21 by ctacconi          #+#    #+#             */
-/*   Updated: 2024/05/25 14:40:16 by ctacconi         ###   ########.fr       */
+/*   Updated: 2024/05/25 16:26:00 by ctacconi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@ void	assign_type(char *str, t_fractal *f)
 		f->type = 1;
 	else
 		f->type = 2;
+}
+
+void	assign_ex_julia(t_fractal *f)
+{
+	f->c.x = -0.8;
+	f->c.y = 0.156;
 }
 
 double	ft_atod(const char *str, double res, double decimal, int i)
@@ -47,16 +53,6 @@ double	ft_atod(const char *str, double res, double decimal, int i)
 		}
 	}
 	return ((res + decimal) * sign);
-}
-
-//to rescale from 0...800 to -2...+2
-double	map(double unscaled_num, double new_min, double new_max, double old_max)
-{
-	double	old_min;
-
-	old_min = 0;
-	return ((new_max - new_min) * (unscaled_num - old_min)
-		/ (old_max - old_min) + new_min);
 }
 
 int	color(int color, int i)
