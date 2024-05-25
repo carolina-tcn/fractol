@@ -6,11 +6,19 @@
 /*   By: ctacconi <ctacconi@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 19:06:21 by ctacconi          #+#    #+#             */
-/*   Updated: 2024/05/20 19:06:23 by ctacconi         ###   ########.fr       */
+/*   Updated: 2024/05/25 14:40:16 by ctacconi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+void	assign_type(char *str, t_fractal *f)
+{
+	if (ft_strncmp(str, "mandelbrot", 10) == 0)
+		f->type = 1;
+	else
+		f->type = 2;
+}
 
 double	ft_atod(const char *str, double res, double decimal, int i)
 {
@@ -38,7 +46,27 @@ double	ft_atod(const char *str, double res, double decimal, int i)
 			i++;
 		}
 	}
-	//printf("%lf\n", (res + decimal) * sign);
 	return ((res + decimal) * sign);
 }
 
+//to rescale from 0...800 to -2...+2
+double	map(double unscaled_num, double new_min, double new_max, double old_max)
+{
+	double	old_min;
+
+	old_min = 0;
+	return ((new_max - new_min) * (unscaled_num - old_min)
+		/ (old_max - old_min) + new_min);
+}
+
+int	color(int color, int i)
+{
+	int	r;
+	int	g;
+	int	b;
+
+	r = (sin(0.1 * i) + 1) * 127 + ((color >> 16) & 0xFF);
+	g = (sin(0.2 * i) + 1) * 127 + ((color >> 8) & 0xFF);
+	b = (sin(0.3 * i) + 1) * 127 + (color & 0xFF);
+	return ((r << 16) | (g << 8) | b);
+}

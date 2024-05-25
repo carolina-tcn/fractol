@@ -6,7 +6,7 @@
 /*   By: ctacconi <ctacconi@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 19:06:01 by ctacconi          #+#    #+#             */
-/*   Updated: 2024/05/20 19:06:03 by ctacconi         ###   ########.fr       */
+/*   Updated: 2024/05/25 13:12:04 by ctacconi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,16 @@
 
 void	print_error_exit(void)
 {
-	ft_printf("%s%s%s%s", ERROR_2, ERROR_3, ERROR_4, ERROR_5);
+	ft_printf("%s%s%s%s", ERROR_1, ERROR_2, ERROR_3, ERROR_4);
 	exit (EXIT_FAILURE);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_fractal	fract;
 
 	if (argc < 2)
-	{
-		ft_printf("%s", ERROR_1);
-		exit(1);
-	}	
+		print_error_exit();
 	check_args(argc, argv, &fract);
 	init(&fract);
 	render_fractal(&fract);

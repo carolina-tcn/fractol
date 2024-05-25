@@ -6,7 +6,7 @@
 /*   By: ctacconi <ctacconi@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 19:05:26 by ctacconi          #+#    #+#             */
-/*   Updated: 2024/05/20 19:05:29 by ctacconi         ###   ########.fr       */
+/*   Updated: 2024/05/25 13:34:50 by ctacconi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,30 +88,27 @@ int	check_julia_args(char *str)
 	return (1);
 }
 
-void	assign_type(char *str, t_fractal *f)
-{
-	if (ft_strncmp(str, "mandelbrot", 10) == 0)
-		f->type = 1;
-	else
-		f->type = 2;
-}
-
 void	check_args(int argc, char **argv, t_fractal *fractal)
 {
 	int	i;
 
 	i = 0;
-    while (argv[1][i])
-    {
-        argv[1][i] = ft_tolower(argv[1][i]);
-        i++;
-    }
+	while (argv[1][i])
+	{
+		argv[1][i] = ft_tolower(argv[1][i]);
+		i++;
+	}
 	if ((argc == 2 && !ft_strncmp(argv[1], "mandelbrot", 10))
+		|| (argc == 2 && !ft_strncmp(argv[1], "julia", 5))
 		|| (argc == 4 && !ft_strncmp(argv[1], "julia", 5)))
 	{
 		assign_type(argv[1], fractal);
-		//fractal->name = argv[1];
-		if (argc == 4)
+		if (argc == 2 && !ft_strncmp(argv[1], "julia", 5))
+		{
+			fractal->c.x = -0.8;
+			fractal->c.y = 0.156;
+		}
+		else if (argc == 4)
 		{
 			if (!check_julia_args(argv[2]) || !check_julia_args(argv[3]))
 				print_error_exit();

@@ -6,7 +6,7 @@
 /*   By: ctacconi <ctacconi@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 19:05:36 by ctacconi          #+#    #+#             */
-/*   Updated: 2024/05/20 19:05:39 by ctacconi         ###   ########.fr       */
+/*   Updated: 2024/05/25 15:43:11 by ctacconi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,10 @@
 # define WIDTH 800
 # define HEIGHT 600
 
-# define ESC 53
-# define MOUSE_UP 5
-# define MOUSE_DOWN 4
-
-# define ERROR_1		"NO INPUT\n"
-# define ERROR_2		"INVALID INPUT\n\n"
-# define ERROR_3		"·INSTRUCTIONS·\nList of parameters:\n\tOption(1): Mandelbrot\n\tOption(2): Julia <parameter 2> <parameter 3>\n\n" 
-# define ERROR_4		"\tRange of parameters for variations ... < -2 ≤ X ≤ 2> ... < -2 ≤ Y ≤ 2 >\n"
-# define ERROR_5		"\t---A maximum of 6 decimals is allowed---\n"
+# define ERROR_1		"INVALID INPUT\n\n"
+# define ERROR_2		"·INSTRUCTIONS·\nList of parameters:\n\tOption(1): Mandelbrot\n\tOption(2): Julia <parameter 2> <parameter 3>\n\n" 
+# define ERROR_3		"\tRange of parameters for variations ...< -2 ≤ X ≤ 2> ... < -2 ≤ Y ≤ 2 >\n"
+# define ERROR_4		"\t---A maximum of 6 decimals is allowed (use .)---\n"
 # define MLX_ERROR	1
 # define EXIT_FAILURE 1
 
@@ -69,50 +64,30 @@
 # define SHIFT				257
 # define TAB				48
 
-typedef struct s_complex
+typedef struct _complex
 {
-	double x; //real
-	double y; //imaginary
+	double	x;
+	double	y;
 }			t_complex;
 
-/*typedef struct	s_fractal
+typedef struct s_fractal
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
 	void		*img_ptr;
 	char		*addr;
-	int 		bpp;
+	int			bpp;
 	int			line_length;
 	int			endian;
-	char 		*name;
+	int			type;
 	t_complex	shift;
 	t_complex	c;
 	t_complex	z;
+	int			color;
 	double		zoom;
 	double		definition;
 	double		limit;
-
-}			t_fractal;*/
-
-typedef struct  s_fractal
-{
-    void        *mlx_ptr;
-    void        *win_ptr;
-    void        *img_ptr;
-    char        *addr;
-    int         bpp;
-    int         line_length;
-    int         endian;
-    //char        *name;
-    int 		type;
-    t_complex   shift;
-    t_complex   c;
-    t_complex   z;
-    int			color;
-    double      zoom;
-    double      definition;
-    double      limit;
-}           t_fractal;
+}			t_fractal;
 
 enum
 {
@@ -130,8 +105,11 @@ double	ft_atod(const char *str, double res, double decimal, int i);
 void	print_error_exit(void);
 void	init(t_fractal *fractal);
 void	render_fractal(t_fractal *fractal);
-int	manage_key(int keycode, t_fractal *fractal);
-int	mouse_hook(int keycode, int x, int y, t_fractal *fractal);
-//int	close_red_cross(t_fractal *fractal);
+int		manage_key(int keycode, t_fractal *fractal);
+int		mouse_hook(int keycode, int x, int y, t_fractal *fractal);
+int		close_red_cross(t_fractal *fractal);
+void	assign_type(char *str, t_fractal *f);
+double	map(double unscaled_num, double new_min, double new_max, double old_max);
+int	color(int color, int i);
 
 #endif
