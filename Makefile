@@ -6,17 +6,17 @@
 #    By: ctacconi <ctacconi@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/25 16:47:30 by ctacconi          #+#    #+#              #
-#    Updated: 2024/05/25 16:47:33 by ctacconi         ###   ########.fr        #
+#    Updated: 2024/05/28 20:11:51 by ctacconi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
-SRC = main.c check_args.c utils.c init.c render.c events.c
+SRC = srcs/main.c srcs/check_args.c srcs/utils.c srcs/init.c srcs/render.c srcs/events.c
 
 OBJ = $(SRC:.c=.o)
 
-CC = gcc -g
+CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
@@ -25,7 +25,7 @@ INCLUDE = Makefile fractol.h
 RM = rm -f
 
 # Implicit method
-%.o: %.c $(INCLUDE)
+%.o: %.c Makefile inc/fractol.h ft_printf/libftprintf.a
 	$(CC) $(CFLAGS) -Imlx -o $@ -c $<
 
 # My methods
@@ -35,7 +35,7 @@ make_libs:
 	Make -C mlx/
 	Make -C ft_printf/
 
-$(NAME): $(OBJ) make_libs
+$(NAME): $(OBJ) 
 	cp ft_printf/libftprintf.a $(NAME)
 	$(CC) $(NAME) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework Appkit -o $(NAME)
 

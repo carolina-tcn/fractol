@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../inc/fractol.h"
 
 int	manage_key(int keycode, t_fractal *fractal)
 {

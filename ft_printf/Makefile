@@ -33,7 +33,7 @@ LIB=ar rcs
 RM=rm -f
 
 # Metodo implicito
-%.o: %.c $(INCLUDE)
+%.o: %.c Makefile ft_printf.h libft/libft.a
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 
@@ -43,7 +43,7 @@ all: make_libs $(NAME)
 make_libs:
 	Make -C libft/
 
-$(NAME): $(OBJ) libft/libft.a
+$(NAME): $(OBJ)
 	cp libft/libft.a $(NAME)
 	$(LIB) $(NAME) $(OBJ)
 

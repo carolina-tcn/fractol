@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../inc/fractol.h"
 
 void	assign_type(char *str, t_fractal *f)
 {

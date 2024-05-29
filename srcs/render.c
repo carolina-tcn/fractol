@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../inc/fractol.h"
 
 t_complex	sum_complex(t_complex z, t_complex c)
 {

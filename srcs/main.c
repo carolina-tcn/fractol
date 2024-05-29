@@ -6,11 +6,11 @@
 /*   By: ctacconi <ctacconi@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 19:06:01 by ctacconi          #+#    #+#             */
-/*   Updated: 2024/05/25 13:12:04 by ctacconi         ###   ########.fr       */
+/*   Updated: 2024/05/28 17:48:36 by ctacconi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../inc/fractol.h"
 
 void	print_error_exit(void)
 {

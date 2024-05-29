@@ -6,11 +6,11 @@
 /*   By: ctacconi <ctacconi@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 19:05:26 by ctacconi          #+#    #+#             */
-/*   Updated: 2024/05/25 16:12:54 by ctacconi         ###   ########.fr       */
+/*   Updated: 2024/05/29 19:51:32 by ctacconi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../inc/fractol.h"
 
 int	check_double_format(char *xy)
 {
@@ -75,7 +75,8 @@ int	check_max_min_double(char *xy)
 		return (0);
 	if (*(xy_check + 1) && *(xy_check + 1) != '.')
 		return (0);
-	check_if_decimals(xy_check);
+	if (!check_if_decimals(xy_check))
+		return (0);
 	return (1);
 }
 
@@ -98,12 +99,12 @@ void	check_args(int argc, char **argv, t_fractal *fractal)
 		argv[1][i] = ft_tolower(argv[1][i]);
 		i++;
 	}
-	if ((argc == 2 && !ft_strncmp(argv[1], "mandelbrot", 10))
-		|| (argc == 2 && !ft_strncmp(argv[1], "julia", 5))
-		|| (argc == 4 && !ft_strncmp(argv[1], "julia", 5)))
+	if ((argc == 2 && !ft_strncmp(argv[1], "mandelbrot", 11))
+		|| (argc == 2 && !ft_strncmp(argv[1], "julia", 6))
+		|| (argc == 4 && !ft_strncmp(argv[1], "julia", 6)))
 	{
 		assign_type(argv[1], fractal);
-		if (argc == 2 && !ft_strncmp(argv[1], "julia", 5))
+		if (argc == 2 && !ft_strncmp(argv[1], "julia", 6))
 			assign_ex_julia(fractal);
 		else if (argc == 4)
 		{

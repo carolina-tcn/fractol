@@ -6,20 +6,19 @@
 /*   By: ctacconi <ctacconi@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 19:05:36 by ctacconi          #+#    #+#             */
-/*   Updated: 2024/05/25 15:43:11 by ctacconi         ###   ########.fr       */
+/*   Updated: 2024/05/28 17:49:31 by ctacconi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include "ft_printf/ft_printf.h"
-# include "mlx/mlx.h"
+# include "../ft_printf/ft_printf.h"
+# include "mlx.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
-
 # define WIDTH 800
 # define HEIGHT 600
 
